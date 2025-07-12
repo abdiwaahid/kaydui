@@ -9,6 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.11.0"
+    "@astrojs/prism": "^3.3.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "astro": "^5.11.0",
+    "marked": "^16.0.0",
+    "prismjs": "^1.30.0",
+    "tailwindcss": "^4.1.11"
   }
 }
