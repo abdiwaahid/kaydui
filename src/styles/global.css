@@ -1,2 +1,11 @@
 @import "tailwindcss";
-@source "../**/*.{astro,html,js,jsx,ts,tsx}"
+
+@source "..*.{astro,html,js,jsx,ts,tsx}";
+@source "../**/*[*].{astro,html,js,jsx,ts,tsx}";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary: oklch(55% 0.158 251);
+    --color-primary-foreground: oklch(100% 0 0);
+}

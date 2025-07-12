@@ -1,11 +1,148 @@
 ---
-import Component from '../components/Component.astro';
-import Layout from '../layouts/Layout.astro';
-import { components } from '../lib/code';
+import Component from "../components/Component.astro";
+import Layout from "../layouts/Layout.astro";
+import { components } from "../lib/code";
 ---
 
 <Layout>
-	<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-		{components.map((component) => <Component {...component} />)}
-	</div>
+  <section class="relative py-20 lg:py-32 overflow-hidden">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20"
+    >
+    </div>
+    <div class="container mx-auto px-4 relative">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="flex justify-center mb-6">
+          <div
+            class="flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-medium"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <span>Modern Component Library</span>
+          </div>
+        </div>
+
+        <h1
+          class="text-4xl lg:text-6xl font-bold tracking-tight mb-6 text-gray-900 dark:text-white"
+        >
+          Beautiful Tailwind CSS
+          <span class="text-primary block">Components & Templates</span>
+        </h1>
+
+        <p
+          class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto"
+        >
+          A curated collection of production-ready components built with
+          Tailwind CSS. Copy, paste, and customize to build your next project
+          faster.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a href="/components"
+            class="bg-primary text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center"
+          >
+            Browse Components
+            <svg
+              class="w-5 h-5 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          <a
+            href="https://github.com/abdiwaahid/kaydui"
+            target="_blank"
+            class="bg-transparent border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center justify-center"
+          >
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+              ></path>
+            </svg>
+            View on GitHub
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+          <div class="text-center">
+            <div
+              class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-blue-600 dark:text-blue-400"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
+              Copy & Paste
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              No installation required. Just copy the code and paste it into
+              your project.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-blue-600 dark:text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
+              Fully Customizable
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              Built with Tailwind CSS. Easy to customize colors, spacing, and
+              styling.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-blue-600 dark:text-blue-400"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
+              Production Ready
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              Accessible, responsive, and optimized components ready for
+              production use.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
