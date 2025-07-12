@@ -1,6 +1,7 @@
 ---
 import { Prism } from "@astrojs/prism";
 import { categories } from "../lib/code";
+import { baseUrl } from "../utils/utils";
 const { id, name, slug, code, category } = Astro.props;
 
 const componentCategory = categories.find((c) => c.id === id);
@@ -10,9 +11,9 @@ const componentCategory = categories.find((c) => c.id === id);
   class="h-64 p-0 bg-white dark:bg-gray-800 rounded-xl shadow-xs border border-gray-200 dark:border-gray-700 hover:shadow-sm transition-all duration-200 flex flex-col gap-5"
 >
   <div class="grow flex items-center justify-center rounded-t-lg overflow-hidden">
-    <img src={`/thumbnails/${slug}.png`} alt="" class="object-contain block" />
+    <img src={`${baseUrl}/thumbnails/${slug}.png`} alt="" class="object-contain block" />
   </div>
-  <a class=" block p-6" href={`/components/${slug}`}>
+  <a class=" block p-6" href={`${baseUrl}/components/${slug}`}>
     <h3 class="font-semibold text-lg mb-1 text-gray-900 dark:text-white">
       {name}
     </h3>

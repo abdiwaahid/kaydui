@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import { components } from "../../lib/code";
 import Layout from "../../layouts/Layout.astro";
 import { Code } from 'astro:components';
+import { baseUrl } from "../../utils/utils";
 
 export const getStaticPaths = (() => {
   return components.map((component) => {
@@ -23,7 +24,7 @@ const component = Astro.props;
   <div class="max-w-7xl mx-auto px-4 py-8">
     <div class="mb-6">
       <a
-        href="/components"
+        href={`${baseUrl}/components`}
         class="inline-flex items-center text-gray-600 dark:text-gray-300 hover:text-primary transition-colors mb-4"
       >
         <svg

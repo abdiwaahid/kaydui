@@ -2,6 +2,7 @@
 import Component from "../components/Component.astro";
 import Layout from "../layouts/Layout.astro";
 import { components } from "../lib/code";
+import { baseUrl } from "../utils/utils";
 ---
 
 <Layout>
@@ -39,7 +40,7 @@ import { components } from "../lib/code";
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <a href="/components"
+          <a href={`${baseUrl}/components`}
             class="bg-primary text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center"
           >
             Browse Components

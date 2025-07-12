@@ -1,4 +1,5 @@
 ---
+import { baseUrl } from "../utils/utils";
 import NavLink from "./NavLink.astro";
 const navigations = [
   { name: "Home", href: "/" },
@@ -24,7 +25,7 @@ const navigations = [
       {
         navigations.map((navigation) => (
           <NavLink
-            href={navigation.href}
+            href={`${baseUrl}${navigation.href}`}
             active={
               navigation.href === Astro.url.pathname ||
               (navigation.href.length > 1 &&
