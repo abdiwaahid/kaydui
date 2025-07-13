@@ -92,7 +92,7 @@ export const components = [
         id: 2,
         name: "Custom Radio",
         slug: "custom-radio",
-        category: 2,
+        category: 5,
         code: `
         <div class="mb-6">
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-100 mb-3">Content to Export</label>

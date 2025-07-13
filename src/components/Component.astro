@@ -4,11 +4,12 @@ import { categories } from "../lib/code";
 import { baseUrl } from "../utils/utils";
 const { id, name, slug, code, category } = Astro.props;
 
-const componentCategory = categories.find((c) => c.id === id);
+const componentCategory = categories.filter((c) => c.id === category).at(0);
+
 ---
 
 <div
-  class="h-64 p-0 bg-white dark:bg-gray-800 rounded-xl shadow-xs border border-gray-200 dark:border-gray-700 hover:shadow-sm transition-all duration-200 flex flex-col gap-5"
+  class={`h-64 p-0 bg-white dark:bg-gray-800 rounded-xl shadow-xs border border-gray-200 dark:border-gray-700 hover:shadow-sm transition-all duration-200 flex flex-col ${componentCategory?.slug}`}
 >
   <div class="grow flex items-center justify-center rounded-t-lg overflow-hidden">
     <img src={`${baseUrl}/thumbnails/${slug}.png`} alt="" class="object-contain block" />

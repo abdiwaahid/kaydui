@@ -37,22 +37,77 @@ const cats = categories.map((category) => {
     </div>
   </section>
   <div class="max-w-7xl mx-auto my-12">
-    <div class="flex space-x-2 text-sm font-medium gap-10">
-      <div class="w-1/3">
+    <div class="space-x-2 text-sm font-medium gap-10">
+      <div class="flex items-center p-3 gap-5 overflow-x-auto mb-3">
+        <div class="min-w-fit">
+          <input
+            type="radio"
+            id="all"
+            name="category"
+            value="all"
+            class="peer sr-only"
+            checked
+          />
+          <label
+            for="all"
+            class="peer border rounded-full px-4 py-2 cursor-pointer flex items-center peer-checked:bg-primary peer-checked:text-white"
+          >
+            <h5 class="grow dark:text-white">All</h5>
+          </label>
+        </div>
         {
           cats.map((category) => (
-            <div class="flex items-center py-2 ">
-              <h5 class="grow dark:text-white">{category.name}</h5>
-              <p class="ml-auto  bg-primary text-white rounded-full px-2">
-                {category.components}
-              </p>
+            <div class="min-w-fit">
+              <input
+                type="radio"
+                id={`${category.slug}`}
+                name="category"
+                value={category.slug}
+                class="peer sr-only"
+              />
+              <label
+                for={category.slug}
+                class="peer border rounded-full px-4 py-2 cursor-pointer flex items-center peer-checked:bg-primary peer-checked:text-white"
+              >
+                <h5 class="grow dark:text-white">{category.name}</h5>
+              </label>
             </div>
           ))
         }
       </div>
-      <div class="grow grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div
+        class="grow grid grid-cols-1 md:grid-cols-3 gap-4 py-6"
+        id="components"
+      >
         {components.map((component) => <Component {...component} />)}
       </div>
     </div>
   </div>
 </Layout>
+
+<script>
+  const category = document.querySelectorAll("input[name='category']");
+
+  function filter(category: string) {
+    const components = document.getElementById("components")!;
+    if (category === "all") {
+      Array.from(components.children).forEach((component) => {
+        component.classList.remove("hidden");
+      });
+      return;
+    }
+    Array.from(components.children).forEach((component) => {
+      if (component.classList.contains(category)) {
+        component.classList.remove("hidden");
+      } else {
+        component.classList.add("hidden");
+      }
+    });
+  }
+
+  category.forEach((c) => {
+    c.addEventListener("change", (e) => {
+      filter(e.target.value);
+    });
+  });
+</script>

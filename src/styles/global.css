@@ -9,3 +9,9 @@
     --color-primary: oklch(55% 0.158 251);
     --color-primary-foreground: oklch(100% 0 0);
 }
+
+@layer base {
+  *, ::before, ::after {
+    @apply border-gray-200 dark:border-gray-700;
+  }
+}
