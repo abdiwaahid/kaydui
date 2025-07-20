@@ -15,7 +15,7 @@ const cats = categories.map((category) => {
 <Layout title="Components -">
   <section class="relative py-20 lg:py-32 overflow-hidden">
     <div
-      class="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20"
+      class="absolute inset-0 bg-linear-to-br from-blue-50 via-transparent to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20"
     >
     </div>
     <div class="container mx-auto px-4 relative">
@@ -38,42 +38,53 @@ const cats = categories.map((category) => {
   </section>
   <div class="max-w-7xl mx-auto my-12">
     <div class="space-x-2 text-sm font-medium gap-10">
-      <div class="flex items-center p-3 gap-5 overflow-x-auto mb-3">
-        <div class="min-w-fit">
+      <div class="flex gap-5 items-center mb-5">
+        <div class="w-1/4">
           <input
-            type="radio"
-            id="all"
-            name="category"
-            value="all"
-            class="peer sr-only"
-            checked
+            placeholder="Search..."
+            id="search"
+            class="ring-offset-background flex w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm placeholder:text-neutral-400 focus:border-neutral-300 outline-0 focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-800 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:focus:ring-offset-gray-700"
           />
-          <label
-            for="all"
-            class="peer border rounded-full px-4 py-2 cursor-pointer flex items-center peer-checked:bg-primary peer-checked:text-white"
-          >
-            <h5 class="grow dark:text-white">All</h5>
-          </label>
         </div>
-        {
-          cats.map((category) => (
-            <div class="min-w-fit">
-              <input
-                type="radio"
-                id={`${category.slug}`}
-                name="category"
-                value={category.slug}
-                class="peer sr-only"
-              />
-              <label
-                for={category.slug}
-                class="peer border rounded-full px-4 py-2 cursor-pointer flex items-center peer-checked:bg-primary peer-checked:text-white"
-              >
-                <h5 class="grow dark:text-white">{category.name}</h5>
-              </label>
-            </div>
-          ))
-        }
+        <div
+          class="w-3/4 scrollable-div flex items-center  gap-5 overflow-x-auto "
+        >
+          <div class="min-w-fit">
+            <input
+              type="radio"
+              id="all"
+              name="category"
+              value="all"
+              class="peer sr-only"
+              checked
+            />
+            <label
+              for="all"
+              class="peer border rounded-full px-4 py-2 cursor-pointer flex items-center peer-checked:bg-primary peer-checked:text-white"
+            >
+              <h5 class="grow dark:text-white">All</h5>
+            </label>
+          </div>
+          {
+            cats.map((category) => (
+              <div class="min-w-fit">
+                <input
+                  type="radio"
+                  id={`${category.slug}`}
+                  name="category"
+                  value={category.slug}
+                  class="peer sr-only"
+                />
+                <label
+                  for={category.slug}
+                  class="peer border rounded-full px-4 py-2 cursor-pointer flex items-center peer-checked:bg-primary peer-checked:text-white"
+                >
+                  <h5 class="grow dark:text-white">{category.name}</h5>
+                </label>
+              </div>
+            ))
+          }
+        </div>
       </div>
       <div
         class="grow grid grid-cols-1 md:grid-cols-3 gap-4 py-6"
@@ -88,16 +99,26 @@ const cats = categories.map((category) => {
 <script>
   const category = document.querySelectorAll("input[name='category']");
 
-  function filter(category: string) {
+  function filter(query: string, action = "filter") {
     const components = document.getElementById("components")!;
-    if (category === "all") {
+    if (action === "search") {
+      Array.from(components.children).forEach((component) => {
+        if (component.querySelector("h3")?.textContent?.toLowerCase().includes(query.toLowerCase())) {
+          component.classList.remove("hidden");
+        } else {
+          component.classList.add("hidden");
+        }
+      });
+      return;
+    }
+    if (query === "all") {
       Array.from(components.children).forEach((component) => {
         component.classList.remove("hidden");
       });
       return;
     }
     Array.from(components.children).forEach((component) => {
-      if (component.classList.contains(category)) {
+      if (component.classList.contains(query)) {
         component.classList.remove("hidden");
       } else {
         component.classList.add("hidden");
@@ -109,5 +130,14 @@ const cats = categories.map((category) => {
     c.addEventListener("change", (e) => {
       filter(e.target.value);
     });
+  });
+
+  document.getElementById("search")!.addEventListener("input", (e) => {
+    const query = (e.target as HTMLInputElement).value;
+    if (query.length > 0) {
+      filter(query, "search");
+    } else {
+      filter("all");
+    }
   });
 </script>

@@ -15,3 +15,13 @@
     @apply border-gray-200 dark:border-gray-700;
   }
 }
+
+.scrollable-div::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.scrollable-div {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}

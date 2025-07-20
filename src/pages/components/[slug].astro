@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import { components } from "../../lib/code";
 import Layout from "../../layouts/Layout.astro";
-import { Code } from 'astro:components';
+import { Code } from "astro:components";
 import { baseUrl } from "../../utils/utils";
 
 export const getStaticPaths = (() => {
@@ -18,6 +18,24 @@ export const getStaticPaths = (() => {
 
 const { slug } = Astro.params;
 const component = Astro.props;
+
+const codeWithStyles = `
+  <!DOCTYPE html>
+  <html lang="en" class="h-full">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+  </style>
+    ${component.styles ?? ''}
+  </head>
+  <body class="w-full h-full bg-white grid place-items-center component-preview min-h-[400px] overflow-auto">
+    ${component.code}
+
+    ${component.scripts ?? ''}
+  </body>
+  </html>
+`;
 ---
 
 <Layout title={`${component.name} - Components - `}>
@@ -93,7 +111,7 @@ const component = Astro.props;
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="size-5 "
+                  class="size-5"
                   ><path d="m18 16 4-4-4-4" data--h-bstatus="0OBSERVED"
                   ></path><path d="m6 8-4 4 4 4" data--h-bstatus="0OBSERVED"
                   ></path><path d="m14.5 4-5 16" data--h-bstatus="0OBSERVED"
@@ -131,20 +149,29 @@ const component = Astro.props;
               </copy-code>
             </div>
           </div>
-          <div class="peer p-6 peer-checked:hidden">
+          <div class="peer  peer-checked:hidden">
             <div
               id="componentPreview"
-              class="grid place-items-center component-preview min-h-[400px] overflow-auto"
+              class="grid place-items-center component-preview min-h-[500px] overflow-auto"
             >
-              <Fragment set:html={component.code} />
+              <iframe
+                id="componentPreview"
+                class="h-full w-full overflow-auto"
+                srcdoc={codeWithStyles}
+                sandbox="allow-scripts"></iframe>
             </div>
           </div>
-          <div class="peer  hidden peer-checked:block">
+          <div class="peer hidden peer-checked:block">
             <div
               id="componentPreview"
-              class="grid place-items-center component-preview min-h-[400px] overflow-auto"
+              class="grid place-items-center component-preview min-h-[500px] overflow-auto"
             >
-              <Code class={'h-full w-full'} lang="html" code={component.code.trim()} theme={'dark-plus'} />
+              <Code
+                class={"h-full w-full"}
+                lang="html"
+                code={component.code.trim()}
+                theme={"dark-plus"}
+              />
             </div>
           </div>
         </div>
