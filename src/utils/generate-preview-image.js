@@ -14,7 +14,7 @@ const previewsDir = resolve(__dirname, '../../public/thumbnails');
     for (const component of components) {
         try {
             const page = await browser.newPage();
-            await page.goto(`http://localhost:4321/preview/${component.slug}`, {
+            await page.goto(`http://localhost:4321/kaydui/preview/${component.slug}`, {
                 waitUntil: 'load',
                 timeout: 0
             });
